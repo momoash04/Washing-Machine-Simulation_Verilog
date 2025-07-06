@@ -1,0 +1,1464 @@
+QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+Start time: 19:12:22 on Nov 22,2024
+vcover report washingMachine.ucdb -details -annotate -all 
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /scenarios_TB/dut
+=== Design Unit: work.WashingMachine
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      12         9         3    75.00%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/scenarios_TB/dut/assert__Alarm_On_WashComplete
+                     washingMach.v(391)                 0          1
+/scenarios_TB/dut/assert__CheckCycles_Transition
+                     washingMach.v(385)                 0          1
+/scenarios_TB/dut/assert__Wash_To_FillWater
+                     washingMach.v(379)                 0          1
+/scenarios_TB/dut/assert__Error_On_NoWaterflow
+                     washingMach.v(373)                 0          1
+/scenarios_TB/dut/assert__Error_On_PowerCut
+                     washingMach.v(367)                 0          1
+/scenarios_TB/dut/assert__Start_With_Alarm
+                     washingMach.v(361)                 0          0
+/scenarios_TB/dut/assert__Start_Without_Alarm
+                     washingMach.v(355)                 0          0
+/scenarios_TB/dut/assert__Pause_State
+                     washingMach.v(349)                 0          0
+/scenarios_TB/dut/assert__Preset_To_CheckDoor
+                     washingMach.v(343)                 0          1
+/scenarios_TB/dut/assert__Custom_To_AdjustSettings
+                     washingMach.v(337)                 0          1
+/scenarios_TB/dut/assert__Idle_To_ChooseSettings
+                     washingMach.v(331)                 0          1
+/scenarios_TB/dut/assert__Reset_To_IDLE
+                     washingMach.v(325)                 0          1
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        62        55         7    88.70%
+
+================================Branch Details================================
+
+Branch Coverage for instance /scenarios_TB/dut
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File washingMach.v
+------------------------------------IF Branch------------------------------------
+    76                                        41     Count coming in to IF
+    76              1                    ***0***         if(pause)
+    78              1                         13         else if(start)
+    86              1                         28         else alarm <= 0;
+Branch totals: 2 hits of 3 branches = 66.66%
+
+------------------------------------IF Branch------------------------------------
+    79                                        13     Count coming in to IF
+    79              1                         11             if(!door_open_signal)
+    84              1                          2             else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    92                                       272     Count coming in to IF
+    92              1                          9             if((state == FILL_WATER && !waterflow) || power_cut)
+    94              1                        263             else errorpause[1] <= 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    102                                      262     Count coming in to IF
+    102             1                          2         if(state == WASH_COMPLETE)
+    104             1                        260         else finishedAlarm <= 0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    106                                      467     Count coming in to IF
+    106             1                         17         if (reset) begin
+    119             1                        450         end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    121                                      450     Count coming in to CASE
+    122             1                         13                 IDLE:
+    128             1                         11                 CHOOSE_SETTINGS:
+    197             1                          6                 ADJUST_SETTINGS: begin
+    215             1                         11                 CHECK_DOOR: begin
+    226             1                        409                 default: begin
+Branch totals: 5 hits of 5 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    124                                       13     Count coming in to IF
+    124             1                         11                     if (start)                                      
+                                               2     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    130                                       11     Count coming in to IF
+    130             1                          5                     if (preset == 7)            //custom settings
+    132             1                          6                     else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    133                                        6     Count coming in to IF
+    133             1                          1                         if (preset==0) 
+    141             1                          1                         else if (preset==1)
+    149             1                          2                         else if (preset==2) 
+    158             1                          1                         else if (preset==3) 
+    167             1                          1                         else if (preset==4) 
+    176             1                    ***0***                         else if (preset==5) 
+    185             1                    ***0***                         else if (preset==6) 
+                                         ***0***     All False Count
+Branch totals: 5 hits of 8 branches = 62.50%
+
+------------------------------------IF Branch------------------------------------
+    198                                        6     Count coming in to IF
+    198             1                          4                     if (custom_speed >= 1 && custom_speed <= 5 &&
+    211             1                          2                     else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    216                                       11     Count coming in to IF
+    216             1                          1                     if (door_open_signal) begin
+    220             1                          1                         if (cycles == 0)
+    222             1                          9                         else
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    227                                      409     Count coming in to IF
+    227             1                        403                     if(!errorpause)
+                                               6     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    228                                      403     Count coming in to CASE
+    229             1                         65                             FILL_WATER: begin       
+    241             1                         26                             WASH: begin
+    253             1                         25                             CHECK_CYCLES: begin
+    261             1                         48                             RINSE: begin
+    276             1                         54                             DRAIN: begin
+    287             1                        126                             SPIN: begin
+    299             1                         57                             DRY:
+    310             1                          2                             WASH_COMPLETE: begin            
+    313             1                    ***0***                             default: begin
+Branch totals: 8 hits of 9 branches = 88.88%
+
+------------------------------------IF Branch------------------------------------
+    230                                       65     Count coming in to IF
+    230             1                          8                                 if (water_level_reading < water_level) begin
+    233             1                         49                                 else if(cycles==0) begin
+    236             1                          8                                 else begin 
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    242                                       26     Count coming in to IF
+    242             1                          1                                 if (water_level_reading < water_level)
+    246             1                         25                                 else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    254                                       25     Count coming in to IF
+    254             1                          6                               if (cycles == 0) begin
+    256             1                         19                                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    262                                       48     Count coming in to IF
+    262             1                    ***0***                                 if (water_level_reading < water_level)
+    266             1                         48                                 else
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    268                                       48     Count coming in to IF
+    268             1                         44                                     if(rinse_cycles > 0)
+    270             1                          4                                     else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    277                                       54     Count coming in to IF
+    277             1                         50                                if (!rinse_complete) 
+    281             1                          4                                 else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    289                                      126     Count coming in to IF
+    289             1                        123                                 if (spin_timer<=64) begin
+    291             1                          1                                 end else if (dry_timer) begin
+    293             1                          2                                 end else begin
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    301                                       57     Count coming in to IF
+    301             1                         57                                 if (dry_counter<dry_timer) 
+    306             1                    ***0***                                 else
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      31        18        13    58.06%
+
+================================Condition Details================================
+
+Condition Coverage for instance /scenarios_TB/dut --
+
+  File washingMach.v
+----------------Focused Condition View-------------------
+Line       92 Item    1  (((state == 5) && ~waterflow) || power_cut)
+Condition totals: 3 of 3 input terms covered = 100.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+  (state == 5)         Y
+     waterflow         Y
+     power_cut         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (state == 5)_0        ~power_cut                    
+  Row   2:          1  (state == 5)_1        ~waterflow                    
+  Row   3:          1  waterflow_0           (state == 5)                  
+  Row   4:          1  waterflow_1           (~power_cut && (state == 5))  
+  Row   5:          1  power_cut_0           ~((state == 5) && ~waterflow) 
+  Row   6:          1  power_cut_1           ~((state == 5) && ~waterflow) 
+
+----------------Focused Condition View-------------------
+Line       102 Item    1  (state == 12)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (state == 12)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (state == 12)_0       -                             
+  Row   2:          1  (state == 12)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       130 Item    1  (preset == 7)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 7)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (preset == 7)_0       -                             
+  Row   2:          1  (preset == 7)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       133 Item    1  (preset == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (preset == 0)_0       -                             
+  Row   2:          1  (preset == 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       141 Item    1  (preset == 1)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 1)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (preset == 1)_0       -                             
+  Row   2:          1  (preset == 1)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       149 Item    1  (preset == 2)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 2)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (preset == 2)_0       -                             
+  Row   2:          1  (preset == 2)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       158 Item    1  (preset == 3)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 3)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (preset == 3)_0       -                             
+  Row   2:          1  (preset == 3)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       167 Item    1  (preset == 4)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 4)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (preset == 4)_0       -                             
+  Row   2:          1  (preset == 4)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       176 Item    1  (preset == 5)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 5)         N  No hits                  Hit '_0' and '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (preset == 5)_0       -                             
+  Row   2:    ***0***  (preset == 5)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       185 Item    1  (preset == 6)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (preset == 6)         N  No hits                  Hit '_0' and '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (preset == 6)_0       -                             
+  Row   2:    ***0***  (preset == 6)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       198 Item    1  ((((((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)) && (custom_dry_timer <= 60)) && (custom_water_level >= 1)) && (custom_water_level <= 7))
+Condition totals: 2 of 10 input terms covered = 20.00%
+
+                 Input Term   Covered  Reason for no coverage   Hint
+                -----------  --------  -----------------------  --------------
+        (custom_speed >= 1)         N  '_0' not hit             Hit '_0'
+        (custom_speed <= 5)         Y
+         (custom_temp >= 0)         N  '_0' not hit             Hit '_0'
+         (custom_temp <= 5)         N  '_0' not hit             Hit '_0'
+       (custom_cycles >= 0)         N  '_0' not hit             Hit '_0'
+      (custom_cycles <= 10)         N  '_0' not hit             Hit '_0'
+    (custom_dry_timer >= 0)         N  '_0' not hit             Hit '_0'
+   (custom_dry_timer <= 60)         N  '_0' not hit             Hit '_0'
+  (custom_water_level >= 1)         Y
+  (custom_water_level <= 7)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                   Non-masking condition(s)      
+ ---------  ---------  --------------------         -------------------------     
+  Row   1:    ***0***  (custom_speed >= 1)_0        -                             
+  Row   2:          1  (custom_speed >= 1)_1        ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (custom_cycles <= 10) && (custom_cycles >= 0) && (custom_temp <= 5) && (custom_temp >= 0) && (custom_speed <= 5))
+  Row   3:          1  (custom_speed <= 5)_0        (custom_speed >= 1)           
+  Row   4:          1  (custom_speed <= 5)_1        ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (custom_cycles <= 10) && (custom_cycles >= 0) && (custom_temp <= 5) && (custom_temp >= 0) && (custom_speed >= 1))
+  Row   5:    ***0***  (custom_temp >= 0)_0         ((custom_speed >= 1) && (custom_speed <= 5))
+  Row   6:          1  (custom_temp >= 0)_1         ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (custom_cycles <= 10) && (custom_cycles >= 0) && (custom_temp <= 5) && ((custom_speed >= 1) && (custom_speed <= 5)))
+  Row   7:    ***0***  (custom_temp <= 5)_0         (((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0))
+  Row   8:          1  (custom_temp <= 5)_1         ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (custom_cycles <= 10) && (custom_cycles >= 0) && (((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)))
+  Row   9:    ***0***  (custom_cycles >= 0)_0       ((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5))
+ Row   10:          1  (custom_cycles >= 0)_1       ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (custom_cycles <= 10) && ((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)))
+ Row   11:    ***0***  (custom_cycles <= 10)_0      (((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0))
+ Row   12:          1  (custom_cycles <= 10)_1      ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && (custom_dry_timer >= 0) && (((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)))
+ Row   13:    ***0***  (custom_dry_timer >= 0)_0    ((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10))
+ Row   14:          1  (custom_dry_timer >= 0)_1    ((custom_water_level <= 7) && (custom_water_level >= 1) && (custom_dry_timer <= 60) && ((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)))
+ Row   15:    ***0***  (custom_dry_timer <= 60)_0   (((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0))
+ Row   16:          1  (custom_dry_timer <= 60)_1   ((custom_water_level <= 7) && (custom_water_level >= 1) && (((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)))
+ Row   17:          1  (custom_water_level >= 1)_0  ((((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)) && (custom_dry_timer <= 60))
+ Row   18:          1  (custom_water_level >= 1)_1  ((custom_water_level <= 7) && ((((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)) && (custom_dry_timer <= 60)))
+ Row   19:    ***0***  (custom_water_level <= 7)_0  (((((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)) && (custom_dry_timer <= 60)) && (custom_water_level >= 1))
+ Row   20:          1  (custom_water_level <= 7)_1  (((((((((custom_speed >= 1) && (custom_speed <= 5)) && (custom_temp >= 0)) && (custom_temp <= 5)) && (custom_cycles >= 0)) && (custom_cycles <= 10)) && (custom_dry_timer >= 0)) && (custom_dry_timer <= 60)) && (custom_water_level >= 1))
+
+----------------Focused Condition View-------------------
+Line       220 Item    1  (cycles == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (cycles == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (cycles == 0)_0       -                             
+  Row   2:          1  (cycles == 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       230 Item    1  (water_level_reading < water_level)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+                           Input Term   Covered  Reason for no coverage   Hint
+                          -----------  --------  -----------------------  --------------
+  (water_level_reading < water_level)         Y
+
+     Rows:       Hits  FEC Target                             Non-masking condition(s)      
+ ---------  ---------  --------------------                   -------------------------     
+  Row   1:          1  (water_level_reading < water_level)_0  -                             
+  Row   2:          1  (water_level_reading < water_level)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       233 Item    1  (cycles == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (cycles == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (cycles == 0)_0       -                             
+  Row   2:          1  (cycles == 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       242 Item    1  (water_level_reading < water_level)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+                           Input Term   Covered  Reason for no coverage   Hint
+                          -----------  --------  -----------------------  --------------
+  (water_level_reading < water_level)         Y
+
+     Rows:       Hits  FEC Target                             Non-masking condition(s)      
+ ---------  ---------  --------------------                   -------------------------     
+  Row   1:          1  (water_level_reading < water_level)_0  -                             
+  Row   2:          1  (water_level_reading < water_level)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       254 Item    1  (cycles == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+  (cycles == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (cycles == 0)_0       -                             
+  Row   2:          1  (cycles == 0)_1       -                             
+
+----------------Focused Condition View-------------------
+Line       262 Item    1  (water_level_reading < water_level)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                           Input Term   Covered  Reason for no coverage   Hint
+                          -----------  --------  -----------------------  --------------
+  (water_level_reading < water_level)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                             Non-masking condition(s)      
+ ---------  ---------  --------------------                   -------------------------     
+  Row   1:          1  (water_level_reading < water_level)_0  -                             
+  Row   2:    ***0***  (water_level_reading < water_level)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       268 Item    1  (rinse_cycles > 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+          Input Term   Covered  Reason for no coverage   Hint
+         -----------  --------  -----------------------  --------------
+  (rinse_cycles > 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (rinse_cycles > 0)_0  -                             
+  Row   2:          1  (rinse_cycles > 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       289 Item    1  (spin_timer <= 64)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+          Input Term   Covered  Reason for no coverage   Hint
+         -----------  --------  -----------------------  --------------
+  (spin_timer <= 64)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (spin_timer <= 64)_0  -                             
+  Row   2:          1  (spin_timer <= 64)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       301 Item    1  (dry_counter < dry_timer)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                 Input Term   Covered  Reason for no coverage   Hint
+                -----------  --------  -----------------------  --------------
+  (dry_counter < dry_timer)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target                   Non-masking condition(s)      
+ ---------  ---------  --------------------         -------------------------     
+  Row   1:    ***0***  (dry_counter < dry_timer)_0  -                             
+  Row   2:          1  (dry_counter < dry_timer)_1  -                             
+
+
+FSM Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    FSM States                      12        12         0   100.00%
+    FSM Transitions                 73        23        50    31.50%
+
+================================FSM Details================================
+
+FSM Coverage for instance /scenarios_TB/dut --
+
+FSM_ID: state
+    Current State Object : state
+    ----------------------
+    State Value MapInfo :
+    ---------------------
+Line          State Name               Value
+----          ----------               -----
+ 229          FILL_WATER                   5
+ 241                WASH                   6
+ 261               RINSE                   9
+ 253        CHECK_CYCLES                   7
+ 276               DRAIN                   8
+ 287                SPIN                  10
+ 310       WASH_COMPLETE                  12
+ 299                 DRY                  11
+ 122                IDLE                   0
+ 128     CHOOSE_SETTINGS                   1
+ 215          CHECK_DOOR                   3
+ 197     ADJUST_SETTINGS                   2
+    Covered States :
+    ----------------
+                   State           Hit_count
+                   -----           ---------
+              FILL_WATER                  68          
+                    WASH                  27          
+                   RINSE                  49          
+            CHECK_CYCLES                  25          
+                   DRAIN                  54          
+                    SPIN                 127          
+           WASH_COMPLETE                   2          
+                     DRY                  59          
+                    IDLE                  19          
+         CHOOSE_SETTINGS                  11          
+              CHECK_DOOR                  11          
+         ADJUST_SETTINGS                   7          
+    Covered Transitions :
+    ---------------------
+Line            Trans_ID           Hit_count          Transition          
+----            --------           ---------          ----------          
+ 237                   0                   8          FILL_WATER -> WASH            
+ 234                   1                  49          FILL_WATER -> RINSE           
+ 311                   2                   3          FILL_WATER -> IDLE            
+ 249                   8                  25          WASH -> CHECK_CYCLES          
+ 244                   9                   1          WASH -> FILL_WATER            
+ 311                  10                   1          WASH -> IDLE                  
+ 272                  16                  48          RINSE -> DRAIN                
+ 257                  24                  19          CHECK_CYCLES -> WASH          
+ 255                  25                   6          CHECK_CYCLES -> DRAIN          
+ 283                  32                   4          DRAIN -> SPIN                 
+ 279                  33                  50          DRAIN -> FILL_WATER           
+ 294                  40                   2          SPIN -> WASH_COMPLETE          
+ 292                  41                   1          SPIN -> DRY                   
+ 311                  42                   1          SPIN -> IDLE                  
+ 311                  48                   2          WASH_COMPLETE -> IDLE          
+ 311                  57                   2          DRY -> IDLE                   
+ 125                  64                  11          IDLE -> CHOOSE_SETTINGS          
+ 193                  65                   6          CHOOSE_SETTINGS -> CHECK_DOOR          
+ 131                  66                   5          CHOOSE_SETTINGS -> ADJUST_SETTINGS          
+ 223                  68                   9          CHECK_DOOR -> FILL_WATER          
+ 221                  69                   1          CHECK_DOOR -> DRY             
+ 209                  71                   4          ADJUST_SETTINGS -> CHECK_DOOR          
+ 113                  72                   1          ADJUST_SETTINGS -> IDLE          
+    Uncovered Transitions :
+    -----------------------
+Line            Trans_ID          Transition          
+----            --------          ----------          
+ 307                   3          FILL_WATER -> WASH_COMPLETE
+ 304                   4          FILL_WATER -> DRY   
+ 290                   5          FILL_WATER -> SPIN  
+ 272                   6          FILL_WATER -> DRAIN 
+ 249                   7          FILL_WATER -> CHECK_CYCLES
+ 307                  11          WASH -> WASH_COMPLETE
+ 304                  12          WASH -> DRY         
+ 290                  13          WASH -> SPIN        
+ 272                  14          WASH -> DRAIN       
+ 234                  15          WASH -> RINSE       
+ 264                  17          RINSE -> FILL_WATER 
+ 311                  18          RINSE -> IDLE       
+ 307                  19          RINSE -> WASH_COMPLETE
+ 304                  20          RINSE -> DRY        
+ 290                  21          RINSE -> SPIN       
+ 257                  22          RINSE -> WASH       
+ 249                  23          RINSE -> CHECK_CYCLES
+ 311                  26          CHECK_CYCLES -> IDLE
+ 307                  27          CHECK_CYCLES -> WASH_COMPLETE
+ 304                  28          CHECK_CYCLES -> DRY 
+ 290                  29          CHECK_CYCLES -> SPIN
+ 279                  30          CHECK_CYCLES -> FILL_WATER
+ 234                  31          CHECK_CYCLES -> RINSE
+ 311                  34          DRAIN -> IDLE       
+ 307                  35          DRAIN -> WASH_COMPLETE
+ 304                  36          DRAIN -> DRY        
+ 257                  37          DRAIN -> WASH       
+ 249                  38          DRAIN -> CHECK_CYCLES
+ 234                  39          DRAIN -> RINSE      
+ 279                  43          SPIN -> FILL_WATER  
+ 272                  44          SPIN -> DRAIN       
+ 257                  45          SPIN -> WASH        
+ 249                  46          SPIN -> CHECK_CYCLES
+ 234                  47          SPIN -> RINSE       
+ 304                  49          WASH_COMPLETE -> DRY
+ 290                  50          WASH_COMPLETE -> SPIN
+ 279                  51          WASH_COMPLETE -> FILL_WATER
+ 272                  52          WASH_COMPLETE -> DRAIN
+ 257                  53          WASH_COMPLETE -> WASH
+ 249                  54          WASH_COMPLETE -> CHECK_CYCLES
+ 234                  55          WASH_COMPLETE -> RINSE
+ 307                  56          DRY -> WASH_COMPLETE
+ 290                  58          DRY -> SPIN         
+ 279                  59          DRY -> FILL_WATER   
+ 272                  60          DRY -> DRAIN        
+ 257                  61          DRY -> WASH         
+ 249                  62          DRY -> CHECK_CYCLES 
+ 234                  63          DRY -> RINSE        
+ 113                  67          CHOOSE_SETTINGS -> IDLE
+ 113                  70          CHECK_DOOR -> IDLE  
+
+
+    Summary                       Bins      Hits    Misses  Coverage
+    -------                       ----      ----    ------  --------
+        FSM States                  12        12         0   100.00%
+        FSM Transitions             73        23        50    31.50%
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     106        92        14    86.79%
+
+================================Statement Details================================
+
+Statement Coverage for instance /scenarios_TB/dut --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File washingMach.v
+    1                                                module WashingMachine(
+    2                                                    input clk,
+    3                                                    input reset,
+    4                                                    input start,
+    5                                                    input pause,
+    6                                                    input [2:0] preset,
+    7                                                    input [2:0] custom_temp,
+    8                                                    input [2:0] custom_speed,
+    9                                                    input [3:0] custom_cycles,
+    10                                                   input [5:0] custom_dry_timer,
+    11                                                   input [2:0] custom_water_level,
+    12                                                   input door_open_signal,
+    13                                                   input waterflow,
+    14                                                   input [2:0] water_level_reading,
+    15                                                   input power_cut,
+    16                                                   output reg [2:0] speed,
+    17                                                   output reg [2:0] temp,
+    18                                                   output reg [3:0] cycles,
+    19                                                   output reg [5:0] dry_timer,
+    20                                                   output reg [2:0] water_level,
+    21                                                   output reg rinse_complete,
+    22                                                   output wire [5:0] full_state,
+    23                                                   output reg [3:0] state,
+    24                                                   output reg [1:0] errorpause,
+    25                                                   output reg alarm, //toot toot
+    26                                                   output reg finishedAlarm
+    27                                               );
+    28                                               
+    29                                               // Define state parameters
+    30                                                   //superstates:
+    31                                               parameter RUN = 2'b00;
+    32                                               parameter ERROR = 2'b10;
+    33                                               parameter PAUSE = 2'b01;
+    34                                               
+    35                                               parameter IDLE = 4'b0000;
+    36                                               parameter CHOOSE_SETTINGS = 4'b0001;
+    37                                               parameter ADJUST_SETTINGS = 4'b0010;
+    38                                               parameter CHECK_DOOR = 4'b0011;
+    39                                               
+    40                                                   //substates of normal run
+    41                                               parameter FILL_WATER = 4'b0101;
+    42                                               parameter WASH = 4'b0110;
+    43                                               parameter CHECK_CYCLES = 4'b0111;
+    44                                               parameter DRAIN = 4'b1000;
+    45                                               parameter RINSE = 4'b1001;
+    46                                               parameter SPIN = 4'b1010;
+    47                                               parameter DRY = 4'b1011;
+    48                                               parameter WASH_COMPLETE = 4'b1100;
+    49                                               
+    50                                               // Internal registers
+    51                                               reg [4:0] rinse_cycles;
+    52                                               reg [6:0] spin_timer;
+    53                                               reg [5:0] dry_counter;
+    54                                               //reg[1:0] errorpause;
+    55                                               //reg [3:0] state;
+    56              1                        269     assign full_state = {errorpause, state};
+    57                                               
+    58                                               
+    59                                               initial begin
+    60              1                          1         rinse_cycles <= 10;
+    61              1                          1         speed <= 0;
+    62              1                          1         temp <= 0;
+    63              1                          1         cycles <= 0;
+    64              1                          1         dry_timer <= 0;
+    65              1                          1         dry_counter <=0;
+    66              1                          1         water_level <= 0;
+    67              1                          1         rinse_complete <= 0;
+    68              1                          1         state <= 4'b0;
+    69              1                          1         spin_timer <= 0;
+    70              1                          1         errorpause <= 0;
+    71                                               end
+    72                                               
+    73                                               
+    74                                               //pause state always
+    75              1                         41     always @(posedge clk) begin
+    76                                                   if(pause)
+    77              1                    ***0***             errorpause[0] <= 1;
+    78                                                   else if(start)
+    79                                                       if(!door_open_signal)
+    80                                                       begin
+    81              1                         11                 errorpause[0] <= 0;
+    82              1                         11                 alarm <= 0;
+    83                                                       end
+    84                                                       else
+    85              1                          2                 alarm <= 1;
+    86              1                         28         else alarm <= 0;
+    87                                               end 
+    88                                               
+    89                                               //error state 
+    90                                               //EDIT
+    91              1                        272      always @(posedge clk) begin
+    92                                                       if((state == FILL_WATER && !waterflow) || power_cut)
+    93              1                          9                     errorpause[1] <= 1;
+    94              1                        263             else errorpause[1] <= 0;
+    95                                               end
+    96                                               
+    97                                               
+    98                                               
+    99                                               //Next State Logic
+    100             1                        262     always @(posedge clk or posedge reset) begin
+    101                                              
+    102                                                  if(state == WASH_COMPLETE)
+    103             1                          2             finishedAlarm <= 1;
+    104             1                        260         else finishedAlarm <= 0;
+    105                                              
+    106                                                  if (reset) begin
+    107             1                         17         speed <= 0;
+    108             1                         17         temp <= 0;
+    109             1                         17         cycles <= 0;
+    110             1                         17         dry_timer <= 0;
+    111             1                         17         water_level <= 0;
+    112             1                         17         rinse_complete <= 0;
+    113             1                         17         state <= 4'b0;
+    114             1                         17         spin_timer <= 0;
+    115             1                         17         dry_counter <= 0;
+    116             1                         17         rinse_cycles <= 10;
+    117             1                         17         errorpause <= 0;
+    118                                              
+    119                                                  end else begin
+    120                                              
+    121                                                      case (state) //synopsys full_case
+    122                                                          IDLE:
+    123                                                          begin 
+    124                                                              if (start)                                      
+    125             1                         11                         state <= CHOOSE_SETTINGS;
+    126                                                          end
+    127                                              
+    128                                                          CHOOSE_SETTINGS:
+    129                                                          begin
+    130                                                              if (preset == 7)            //custom settings
+    131             1                          5                         state <= ADJUST_SETTINGS;
+    132                                                              else begin
+    133                                                                  if (preset==0) 
+    134                                                                      begin                //wool
+    135             1                          1                                 speed <= 2;
+    136             1                          1                                 temp <= 2;
+    137             1                          1                                 cycles <= 4;
+    138             1                          1                                 dry_timer <= 0;
+    139             1                          1                                 water_level <= 5;
+    140                                                                      end 
+    141                                                                  else if (preset==1)
+    142                                                                      begin               //cotton
+    143             1                          1                                 speed <= 3;
+    144             1                          1                                 temp <= 5;
+    145             1                          1                                 cycles <= 6;
+    146             1                          1                                 dry_timer <= 0;
+    147             1                          1                                 water_level <= 7;
+    148                                                                      end 
+    149                                                                  else if (preset==2) 
+    150                                                                      begin                //quick
+    151             1                          2                                 speed <= 4;
+    152             1                          2                                 temp <= 3;
+    153             1                          2                                 cycles <= 2;
+    154             1                          2                                 dry_timer <= 0;
+    155             1                          2                                 water_level <= 4;
+    156                                              
+    157                                                                      end 
+    158                                                                  else if (preset==3) 
+    159                                                                      begin                //wash and dry
+    160             1                          1                                 speed <= 3;
+    161             1                          1                                 temp <= 3;
+    162             1                          1                                 cycles <= 8;
+    163             1                          1                                 dry_timer <= 30;
+    164             1                          1                                 water_level <= 6;
+    165                                              
+    166                                                                      end 
+    167                                                                  else if (preset==4) 
+    168                                                                      begin               //dry only
+    169             1                          1                                 speed <= 0;
+    170             1                          1                                 temp <= 0;
+    171             1                          1                                 cycles <= 0;
+    172             1                          1                                 dry_timer <= 60;
+    173             1                          1                                 water_level <= 0;
+    174                                              
+    175                                                                      end 
+    176                                                                  else if (preset==5) 
+    177                                                                      begin               //sports
+    178             1                    ***0***                                 speed <= 3;
+    179             1                    ***0***                                 temp <= 2;
+    180             1                    ***0***                                 cycles <= 7;
+    181             1                    ***0***                                 dry_timer <= 0;
+    182             1                    ***0***                                 water_level <= 7;
+    183                                              
+    184                                                                      end 
+    185                                                                  else if (preset==6) 
+    186                                                                      begin                 //silk
+    187             1                    ***0***                                 speed <= 1;
+    188             1                    ***0***                                 temp <= 20;
+    189             1                    ***0***                                 cycles <= 3;
+    190             1                    ***0***                                 dry_timer <= 0;
+    191             1                    ***0***                                 water_level <= 6;
+    192                                                                      end
+    193             1                          6                         state <= CHECK_DOOR;
+    194                                                              end
+    195                                                          end
+    196                                                          
+    197                                                          ADJUST_SETTINGS: begin
+    198                                                              if (custom_speed >= 1 && custom_speed <= 5 &&
+    199                                                                  custom_temp >= 0 && custom_temp <= 5 &&
+    200                                                                  custom_cycles >= 0 && custom_cycles <= 10 &&
+    201                                                                  custom_dry_timer >= 0 && custom_dry_timer <= 60 &&
+    202                                                                  custom_water_level>=1 && custom_water_level<= 7)
+    203                                                                  begin
+    204             1                          4                             speed <= custom_speed;
+    205             1                          4                             temp <= custom_temp;
+    206             1                          4                             cycles <= custom_cycles;
+    207             1                          4                             dry_timer <= custom_dry_timer;
+    208             1                          4                             water_level<=custom_water_level;
+    209             1                          4                             state <= CHECK_DOOR;
+    210                                                                  end 
+    211                                                              else
+    212             1                          2                         state <= ADJUST_SETTINGS;
+    213                                                          end
+    214                                              
+    215                                                          CHECK_DOOR: begin
+    216                                                              if (door_open_signal) begin
+    217             1                          1                         state <= CHECK_DOOR;
+    218                                                              end 
+    219                                                              else 
+    220                                                                  if (cycles == 0)
+    221             1                          1                             state <= DRY;
+    222                                                                  else
+    223             1                          9                              state <= FILL_WATER;
+    224                                                          end
+    225                                              
+    226                                                          default: begin
+    227                                                              if(!errorpause)
+    228                                                                  case (state) //synopsys full_case
+    229                                                                      FILL_WATER: begin       
+    230                                                                          if (water_level_reading < water_level) begin
+    231             1                          8                                     state <= FILL_WATER;
+    232                                                                          end 
+    233                                                                          else if(cycles==0) begin
+    234             1                         49                                     state <= RINSE;
+    235                                                                          end 
+    236                                                                          else begin 
+    237             1                          8                                     state <= WASH;
+    238                                                                          end
+    239                                                                      end
+    240                                              
+    241                                                                      WASH: begin
+    242                                                                          if (water_level_reading < water_level)
+    243                                                                           begin
+    244             1                          1                                        state <= FILL_WATER;
+    245                                                                           end 
+    246                                                                          else
+    247                                                                           begin
+    248             1                         25                                         cycles <= cycles - 1;
+    249             1                         25                                         state <= CHECK_CYCLES;
+    250                                                                           end
+    251                                                                      end 
+    252                                              
+    253                                                                      CHECK_CYCLES: begin
+    254                                                                        if (cycles == 0) begin
+    255             1                          6                                    state <= DRAIN;
+    256                                                                          end else begin
+    257             1                         19                                     state<= WASH;
+    258                                                                          end
+    259                                                                      end
+    260                                              
+    261                                                                      RINSE: begin
+    262                                                                          if (water_level_reading < water_level)
+    263                                                                              begin
+    264             1                    ***0***                                         state <= FILL_WATER;
+    265                                                                              end 
+    266                                                                          else
+    267                                                                              begin    
+    268                                                                              if(rinse_cycles > 0)
+    269             1                         44                                         rinse_cycles <= rinse_cycles - 1;
+    270                                                                              else
+    271             1                          4                                         rinse_complete <= 1;
+    272             1                         48                                     state <= DRAIN;
+    273                                                                              end
+    274                                                                      end
+    275                                              
+    276                                                                      DRAIN: begin
+    277                                                                         if (!rinse_complete) 
+    278                                                                              begin
+    279             1                         50                                         state <= FILL_WATER;
+    280                                                                              end 
+    281                                                                          else 
+    282                                                                              begin
+    283             1                          4                                         state <= SPIN;
+    284                                                                              end
+    285                                                                      end
+    286                                              
+    287                                                                      SPIN: begin
+    288             1                        126                                 spin_timer <= spin_timer + speed;                     
+    289                                                                          if (spin_timer<=64) begin
+    290             1                        123                                     state <= SPIN;
+    291                                                                          end else if (dry_timer) begin
+    292             1                          1                                     state <= DRY;
+    293                                                                          end else begin
+    294             1                          2                                     state <= WASH_COMPLETE;
+    295                                                                          end
+    296                                                                      end
+    297                                              
+    298                                              
+    299                                                                      DRY:
+    300                                                                      begin
+    301                                                                          if (dry_counter<dry_timer) 
+    302                                                                              begin
+    303             1                         57                                         dry_counter <= dry_counter + 1; 
+    304             1                         57                                         state <= DRY;                             
+    305                                                                              end
+    306                                                                          else
+    307             1                    ***0***                                     state <= WASH_COMPLETE;
+    308                                                                      end
+    309                                                                      
+    310                                                                      WASH_COMPLETE: begin            
+    311             1                          2                                     state <= IDLE;
+    312                                                                      end
+    313                                                                      default: begin
+    314             1                    ***0***                                 state <= state;
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        168       153        15    91.07%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /scenarios_TB/dut --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                             alarm           1           1      100.00 
+                                               clk           1           1      100.00 
+                                custom_cycles[0-1]           1           1      100.00 
+                                  custom_cycles[2]           0           0        0.00 
+                                  custom_cycles[3]           1           1      100.00 
+                               custom_dry_timer[0]           0           0        0.00 
+                             custom_dry_timer[1-5]           1           1      100.00 
+                                   custom_speed[0]           0           1       50.00 
+                                 custom_speed[1-2]           1           1      100.00 
+                                  custom_temp[0-2]           1           1      100.00 
+                           custom_water_level[0-2]           1           1      100.00 
+                                       cycles[3-0]           1           1      100.00 
+                                  door_open_signal           1           1      100.00 
+                                    dry_counter[5]           0           0        0.00 
+                                  dry_counter[4-0]           1           1      100.00 
+                                    dry_timer[5-1]           1           1      100.00 
+                                      dry_timer[0]           0           0        0.00 
+                                     errorpause[1]           1           1      100.00 
+                                     errorpause[0]           0           0        0.00 
+                                     finishedAlarm           1           1      100.00 
+                                   full_state[0-3]           1           1      100.00 
+                                     full_state[4]           0           0        0.00 
+                                     full_state[5]           1           1      100.00 
+                                             pause           1           1      100.00 
+                                         power_cut           1           1      100.00 
+                                       preset[0-2]           1           1      100.00 
+                                             reset           1           1      100.00 
+                                    rinse_complete           1           1      100.00 
+                                   rinse_cycles[4]           0           0        0.00 
+                                 rinse_cycles[3-0]           1           1      100.00 
+                                        speed[2-0]           1           1      100.00 
+                                   spin_timer[6-0]           1           1      100.00 
+                                             start           1           1      100.00 
+                                        state[3-0]           1           1      100.00 
+                                         temp[2-0]           1           1      100.00 
+                                  water_level[2-0]           1           1      100.00 
+                          water_level_reading[0-2]           1           1      100.00 
+                                         waterflow           1           1      100.00 
+
+Total Node Count     =         84 
+Toggled Node Count   =         76 
+Untoggled Node Count =          8 
+
+Toggle Coverage      =      91.07% (153 of 168 bins)
+
+=================================================================================
+=== Instance: /scenarios_TB
+=== Design Unit: work.scenarios_TB
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     216       216         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /scenarios_TB --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File finalScenario_TB.v
+    1                                                module scenarios_TB;
+    2                                                
+    3                                                    // Inputs
+    4                                                    reg clk;
+    5                                                    reg reset;
+    6                                                    reg start;
+    7                                                    reg pause;
+    8                                                    reg [2:0] preset;
+    9                                                    reg [2:0] custom_temp;
+    10                                                   reg [2:0] custom_speed;
+    11                                                   reg [3:0] custom_cycles;
+    12                                                   reg [5:0] custom_dry_timer;
+    13                                                   reg [2:0] custom_water_level;
+    14                                                   reg door_open_signal;
+    15                                                   reg waterflow;
+    16                                                   reg [2:0] water_level_reading;
+    17                                                   reg power_cut;
+    18                                               
+    19                                                   // Outputs
+    20                                                   wire [2:0] speed;
+    21                                                   wire [2:0] temp;
+    22                                                   wire [3:0] cycles;
+    23                                                   wire [5:0] dry_timer;
+    24                                                   wire [2:0] water_level;
+    25                                                   wire rinse_complete;
+    26                                                   wire [5:0] full_state;
+    27                                                   wire [3:0] state;
+    28                                                   wire [1:0] errorpause;
+    29                                                   wire alarm;
+    30                                                   wire finishedAlarm;
+    31                                               
+    32                                                   // Instantiate the WashingMachine module
+    33                                                   WashingMachine dut (
+    34                                                       .clk(clk),
+    35                                                       .reset(reset),
+    36                                                       .start(start),
+    37                                                       .pause(pause),
+    38                                                       .preset(preset),
+    39                                                       .custom_temp(custom_temp),
+    40                                                       .custom_speed(custom_speed),
+    41                                                       .custom_cycles(custom_cycles),
+    42                                                       .custom_dry_timer(custom_dry_timer),
+    43                                                       .custom_water_level(custom_water_level),
+    44                                                       .door_open_signal(door_open_signal),
+    45                                                       .waterflow(waterflow),
+    46                                                       .water_level_reading(water_level_reading),
+    47                                                       .power_cut(power_cut),
+    48                                                       .speed(speed),
+    49                                                       .temp(temp),
+    50                                                       .cycles(cycles),
+    51                                                       .dry_timer(dry_timer),
+    52                                                       .water_level(water_level),
+    53                                                       .rinse_complete(rinse_complete),
+    54                                                       .full_state(full_state),
+    55                                                       .state(state),
+    56                                                       .errorpause(errorpause),
+    57                                                       .alarm(alarm),
+    58                                                       .finishedAlarm(finishedAlarm)
+    59                                                   );
+    60                                               
+    61                                                   // Clock generation
+    62              1                       1101         always #5 clk = ~clk;
+    62              2                       1100     
+    63                                               
+    64                                                   initial begin
+    65                                                       // Initialize Inputs
+    66              1                          1             clk = 0;
+    67              1                          1             reset = 0;
+    68              1                          1             start = 0;
+    69              1                          1             pause = 0;
+    70              1                          1             preset = 0;
+    71              1                          1             custom_temp = 0;
+    72              1                          1             custom_speed = 0;
+    73              1                          1             custom_cycles = 0;
+    74              1                          1             custom_dry_timer = 0;
+    75              1                          1             custom_water_level = 0;
+    76              1                          1             door_open_signal = 0;
+    77              1                          1             waterflow = 1;
+    78              1                          1             water_level_reading = 0;
+    79              1                          1             power_cut = 0;
+    80                                               
+    81                                                       // Reset the system
+    82              1                          1             reset = 1;
+    83              1                          1             #10 reset = 0;
+    83              2                          1     
+    84                                               
+    85                                               
+    86                                               
+    87                                                       
+    88                                               
+    89                                                       // Test Case A1: WASH to FILL_WATER to WASH
+    90              1                          1             preset = 7;                     // Custom preset
+    91              1                          1             custom_speed = 2; custom_temp = 3; custom_dry_timer = 50;
+    91              2                          1     
+    91              3                          1     
+    92                                               
+    93              1                          1             custom_water_level = 3;
+    94              1                          1             custom_cycles = 10;
+    95              1                          1             start = 1;
+    96              1                          1             #30 start = 0;
+    96              2                          1     
+    97                                               
+    98              1                          1             water_level_reading = 4;        // Initial state in WASH
+    99              1                          1             #30 water_level_reading = 2;    // Transition to FILL_WATER
+    99              2                          1     
+    100             1                          1             #30 water_level_reading = 3;    // Transition back to WASH
+    100             2                          1     
+    101                                                      
+    102                                              
+    103                                              
+    104                                                      // Test Case A2: DRAIN to FILL_WATER to RINSE to DRAIN
+    105             1                          1             reset = 1; #10 reset = 0; // Reset
+    105             2                          1     
+    105             3                          1     
+    106             1                          1             preset = 7; // Custom preset
+    107                                              
+    108             1                          1             custom_speed = 2; custom_temp = 5; custom_dry_timer = 50;
+    108             2                          1     
+    108             3                          1     
+    109             1                          1             custom_water_level = 3;                                     
+    110             1                          1             custom_cycles = 1; // Directly to DRAIN state
+    111             1                          1             start = 1;
+    112             1                          1             #20 start = 0;
+    112             2                          1     
+    113             1                          1             #20 water_level_reading = 1; // Transition to FILL_WATER
+    113             2                          1     
+    114             1                          1             #20 water_level_reading = 3; // Transition to RINSE
+    114             2                          1     
+    115             1                          1             #100; // Wait for one rinse cycle, back to DRAIN
+    116                                              
+    117                                              
+    118                                                      // Test Case A3: Closed/Open Door Start
+    119             1                          1             reset = 1; #10 reset = 0; // Reset
+    119             2                          1     
+    119             3                          1     
+    120             1                          1             preset = 1; // Cotton preset
+    121             1                          1             door_open_signal = 1; // Door open
+    122             1                          1             start = 1; #10 start = 0; #30; // No state change
+    122             2                          1     
+    122             3                          1     
+    122             4                          1     
+    123             1                          1             door_open_signal = 0; // Close door
+    124             1                          1             start = 1; #20 start = 0; // State transitions to RUN
+    124             2                          1     
+    124             3                          1     
+    125                                                      
+    126                                              
+    127                                              
+    128                                                      // Test Case A4: Invalid Custom Input Behavior
+    129             1                          1             reset = 1; #10 reset = 0; // Reset
+    129             2                          1     
+    129             3                          1     
+    130             1                          1             preset = 7; // Custom preset
+    131             1                          1             custom_temp = 0; custom_dry_timer = 0; custom_water_level = 0;
+    131             2                          1     
+    131             3                          1     
+    132                                              
+    133             1                          1             custom_speed = 6;
+    134             1                          1             custom_cycles =11; 
+    135             1                          1             start = 1;
+    136             1                          1             #30 start = 0;
+    136             2                          1     
+    137             1                          1             custom_speed = 5;
+    138             1                          1             custom_cycles =10; 
+    139             1                          1             start = 1; #20 start = 0;
+    139             2                          1     
+    139             3                          1     
+    140                                                      
+    141                                              
+    142                                              
+    143                                                      // Test Case B1: Wool Preset Normal Operation
+    144             1                          1             reset = 1; #10 reset = 0; // Reset
+    144             2                          1     
+    144             3                          1     
+    145             1                          1             preset = 0; // Wool preset
+    146             1                          1             start = 1; #20 start = 0;
+    146             2                          1     
+    146             3                          1     
+    147             1                          1             water_level_reading = 6; waterflow = 1; power_cut = 0; pause=0; door_open_signal=0;
+    147             2                          1     
+    147             3                          1     
+    147             4                          1     
+    147             5                          1     
+    148             1                          1             #1000; // Simulate normal operation with fluctuating water_level_reading
+    149                                              
+    150                                                      // Test Case B2: Quick Wash with Interruptions
+    151             1                          1             reset = 1; #10 reset = 0; // Reset
+    151             2                          1     
+    151             3                          1     
+    152             1                          1             preset = 2; // Quick Wash preset
+    153             1                          1             start = 1; #20 start = 0;
+    153             2                          1     
+    153             3                          1     
+    154             1                          1             water_level_reading = 4; waterflow = 1; power_cut = 0;
+    154             2                          1     
+    154             3                          1     
+    155             1                          1             #50 pause = 1; #5 pause = 0; door_open_signal = 1; #10 start = 1; #5; start=0;  // Pause and open door
+    155             2                          1     
+    155             3                          1     
+    155             4                          1     
+    155             5                          1     
+    155             6                          1     
+    155             7                          1     
+    155             8                          1     
+    155             9                          1     
+    156             1                          1             #20 door_open_signal = 0; start = 1; #5; start=0; // Resume from DRAIN
+    156             2                          1     
+    156             3                          1     
+    156             4                          1     
+    156             5                          1     
+    157             1                          1             #1000;
+    158                                              
+    159                                              
+    160                                                      // Test Case B3: Dry only
+    161             1                          1             reset = 1; #10 reset = 0; // Reset
+    161             2                          1     
+    161             3                          1     
+    162             1                          1             preset = 4; // Dry only preset
+    163             1                          1             start = 1; #20 start = 0;
+    163             2                          1     
+    163             3                          1     
+    164             1                          1             water_level_reading = 0; waterflow = 0; power_cut = 0;  door_open_signal = 0; pause=0;
+    164             2                          1     
+    164             3                          1     
+    164             4                          1     
+    164             5                          1     
+    165             1                          1             #300;
+    166                                              
+    167                                                      
+    168                                              
+    169                                              
+    170                                                      //Upper Edge Case
+    171             1                          1             reset = 1; #10; reset = 0; // Reset the system
+    171             2                          1     
+    171             3                          1     
+    172             1                          1             preset=7;
+    173             1                          1             custom_cycles = 10;      // Maximum cycles = 10
+    174             1                          1             custom_speed = 5;        // Maximum speed = 5
+    175             1                          1             custom_temp = 5;         // Maximum temperature = 5
+    176             1                          1             custom_water_level = 7;  // Maximum water level = 5
+    177             1                          1             custom_dry_timer = 60;
+    178             1                          1             door_open_signal = 0;         // Door is closed
+    179             1                          1             start = 1; #10; start = 0;    // Start washing
+    179             2                          1     
+    179             3                          1     
+    180             1                          1             waterflow = 1;                // Normal water flow
+    181             1                          1             water_level_reading=7;
+    182             1                          1             power_cut = 0;                // No power interruptions
+    183             1                          1             #1000;
+    184                                              
+    185                                              
+    186                                                      //lower Edge Case
+    187             1                          1             reset = 1; #10; reset = 0; // Reset the system
+    187             2                          1     
+    187             3                          1     
+    188             1                          1             custom_cycles = 1;      // Minimum cycles = 1
+    189             1                          1             custom_speed = 1;        // Minimum speed = 1
+    190             1                          1             custom_temp = 0;         // Minimum temperature = 0
+    191             1                          1             custom_water_level = 1;  // Minimum water level = 1
+    192             1                          1             custom_dry_timer = 0;
+    193             1                          1             door_open_signal = 0;         // Door is closed
+    194             1                          1             start = 1; #10; start = 0;    // Start washing
+    194             2                          1     
+    194             3                          1     
+    195             1                          1             waterflow = 1;                // Normal water flow
+    196             1                          1             water_level_reading=1;
+    197             1                          1             power_cut = 0;                // No power interruptions
+    198             1                          1             #1000;
+    199                                              
+    200                                              
+    201                                                      // Test Case C: Recovery from Waterflow and Power Interruptions
+    202             1                          1             reset = 1; #10; reset = 0; // Reset the system
+    202             2                          1     
+    202             3                          1     
+    203             1                          1             preset = 3;                // Preset 3 (Wash and Dry)
+    204             1                          1             door_open_signal = 0;      // Door is closed
+    205             1                          1             start = 1; #10; start = 0; // Start washing
+    205             2                          1     
+    205             3                          1     
+    206             1                          1             waterflow = 1;             // Normal waterflow
+    207             1                          1             power_cut = 0;             // No power interruptions
+    208                                              
+    209             1                          1             water_level_reading=3; #20;
+    209             2                          1     
+    210             1                          1             waterflow = 0; #50; // Waterflow cut
+    210             2                          1     
+    211                                              
+    212                                                      // Restore waterflow
+    213             1                          1             waterflow = 1; 
+    214             1                          1             water_level_reading=6;#50;
+    214             2                          1     
+    215                                              
+    216                                                      // Simulate power cut during
+    217             1                          1             power_cut = 1; #50; // Power cut
+    217             2                          1     
+    218                                                      // Restore power
+    219             1                          1             power_cut = 0; #50;
+    219             2                          1     
+    220                                              
+    221                                              
+    222                                              
+    223                                                      //Test Case D: Recovery from Continuous Waterflow Interruptions
+    224             1                          1             reset = 1; #10; reset = 0; // Reset the system
+    224             2                          1     
+    224             3                          1     
+    225             1                          1             preset = 3'b010;           // Preset 2 (Quick Wash)
+    226             1                          1             door_open_signal = 0;      // Door is closed
+    227             1                          1             start = 1; #10; start = 0; // Start washing
+    227             2                          1     
+    227             3                          1     
+    228             1                          1             waterflow = 1;             // Normal waterflow
+    229             1                          1             power_cut = 0;             // No power interruptions
+    230                                              
+    231                                                      
+    232                                              
+    233             1                          1             water_level_reading=0;#50;
+    233             2                          1     
+    234             1                          1             waterflow = 0; #20; // Waterflow cut
+    234             2                          1     
+    235                                              
+    236             1                          1             waterflow = 1; #20;
+    236             2                          1     
+    237             1                          1             water_level_reading=2;#50;
+    237             2                          1     
+    238                                              
+    239             1                          1             waterflow = 0; #20; // Waterflow cut
+    239             2                          1     
+    240                                              
+    241             1                          1             waterflow = 1; #20;
+    241             2                          1     
+    242             1                          1             water_level_reading=4;#50;
+    242             2                          1     
+    243                                              
+    244             1                          1             waterflow = 0; #20; // Waterflow cut
+    244             2                          1     
+    245                                              
+    246             1                          1             waterflow = 1; #20;
+    246             2                          1     
+    247             1                          1             water_level_reading=6;#50;
+    247             2                          1     
+    248                                                      
+    249                                              
+    250             1                          1             $stop; // End simulation
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        132       121        11    91.66%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /scenarios_TB --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                             alarm           1           1      100.00 
+                                               clk           1           1      100.00 
+                                  custom_cycles[3]           1           1      100.00 
+                                  custom_cycles[2]           0           0        0.00 
+                                custom_cycles[1-0]           1           1      100.00 
+                             custom_dry_timer[5-1]           1           1      100.00 
+                               custom_dry_timer[0]           0           0        0.00 
+                                 custom_speed[2-1]           1           1      100.00 
+                                   custom_speed[0]           0           1       50.00 
+                                  custom_temp[2-0]           1           1      100.00 
+                           custom_water_level[2-0]           1           1      100.00 
+                                       cycles[0-3]           1           1      100.00 
+                                  door_open_signal           1           1      100.00 
+                                      dry_timer[0]           0           0        0.00 
+                                    dry_timer[1-5]           1           1      100.00 
+                                     errorpause[0]           0           0        0.00 
+                                     errorpause[1]           1           1      100.00 
+                                     finishedAlarm           1           1      100.00 
+                                   full_state[0-3]           1           1      100.00 
+                                     full_state[4]           0           0        0.00 
+                                     full_state[5]           1           1      100.00 
+                                             pause           1           1      100.00 
+                                         power_cut           1           1      100.00 
+                                       preset[2-0]           1           1      100.00 
+                                             reset           1           1      100.00 
+                                    rinse_complete           1           1      100.00 
+                                        speed[0-2]           1           1      100.00 
+                                             start           1           1      100.00 
+                                        state[0-3]           1           1      100.00 
+                                         temp[0-2]           1           1      100.00 
+                                  water_level[0-2]           1           1      100.00 
+                          water_level_reading[2-0]           1           1      100.00 
+                                         waterflow           1           1      100.00 
+
+Total Node Count     =         66 
+Toggled Node Count   =         60 
+Untoggled Node Count =          6 
+
+Toggle Coverage      =      91.66% (121 of 132 bins)
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/scenarios_TB/dut/assert__Alarm_On_WashComplete
+                     washingMach.v(391)                 0          1
+/scenarios_TB/dut/assert__CheckCycles_Transition
+                     washingMach.v(385)                 0          1
+/scenarios_TB/dut/assert__Wash_To_FillWater
+                     washingMach.v(379)                 0          1
+/scenarios_TB/dut/assert__Error_On_NoWaterflow
+                     washingMach.v(373)                 0          1
+/scenarios_TB/dut/assert__Error_On_PowerCut
+                     washingMach.v(367)                 0          1
+/scenarios_TB/dut/assert__Start_With_Alarm
+                     washingMach.v(361)                 0          0
+/scenarios_TB/dut/assert__Start_Without_Alarm
+                     washingMach.v(355)                 0          0
+/scenarios_TB/dut/assert__Pause_State
+                     washingMach.v(349)                 0          0
+/scenarios_TB/dut/assert__Preset_To_CheckDoor
+                     washingMach.v(343)                 0          1
+/scenarios_TB/dut/assert__Custom_To_AdjustSettings
+                     washingMach.v(337)                 0          1
+/scenarios_TB/dut/assert__Idle_To_ChooseSettings
+                     washingMach.v(331)                 0          1
+/scenarios_TB/dut/assert__Reset_To_IDLE
+                     washingMach.v(325)                 0          1
+
+Total Coverage By Instance (filtered view): 77.22%
+
+End time: 19:12:22 on Nov 22,2024, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
